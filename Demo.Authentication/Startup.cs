@@ -42,6 +42,15 @@ namespace Demo.Authentication
                     {
                         return Task.CompletedTask;
                     };
+                    options.Events.OnRedirectToAccessDenied = context => {
+                        context.Response.StatusCode = 403;
+                        return Task.CompletedTask;
+                    };
+                    options.Events.OnRedirectToLogin = context => {
+                        context.Response.StatusCode = 401;
+                        return Task.CompletedTask;
+                    };
+                    //options.SessionStore = new CustomTicketStore();
                 })
                 .AddScheme<AuthSchemeOptions, AuthSchemeHandler>("MyCustomScheme", options =>
                 {
@@ -49,10 +58,12 @@ namespace Demo.Authentication
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddAuthorization(opts => {
+                /*
                 opts.AddPolicy("AspManager", policy => {
                     policy.RequireRole("Admin");
                     policy.RequireClaim("Coding-Skill", "ASP.NET Core MVC");
                 });
+                */
             });
             
             services.AddSingleton<Database>();

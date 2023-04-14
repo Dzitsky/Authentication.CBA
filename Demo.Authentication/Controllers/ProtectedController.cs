@@ -16,10 +16,10 @@ namespace Demo.Authentication.Controllers
             return new JsonResult("Успех!");
         }
         
-        //Authorize]
+        [Authorize]
         //[Authorize(Roles = "Seller,Buyer")]
-        [Authorize(Policy = "AspManager")]
         //[Authorize(AuthenticationSchemes = "MyCustomScheme")]
+        //[Authorize(Policy = "AspManager")]
         [HttpPost("methodRequiringAuthorization")]
         public JsonResult MethodRequiringAuthorization()
         {
