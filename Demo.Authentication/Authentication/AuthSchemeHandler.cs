@@ -34,8 +34,6 @@ namespace Demo.Authentication.Authentication
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            var user = this._httpContextAccessor.HttpContext.User;
-
             if (this._random.Next(0, 100) % 2 == 0)
             {
                 return Task.FromResult(AuthenticateResult.Fail("Не повезло"));

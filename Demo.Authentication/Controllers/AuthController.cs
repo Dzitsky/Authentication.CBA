@@ -42,7 +42,7 @@ namespace Demo.Authentication.Controllers
 
         [HttpPost]
         [Route("logout")]
-        public async Task Logout(string token)
+        public async Task Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
